@@ -11,181 +11,161 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
   <link rel="stylesheet" href="../../style.css"/>
   <style>
-    .project-hero { background: linear-gradient(135deg, #1a1200, #3d2b00); padding: 60px 24px 40px; }
-    .back-link { display:inline-flex;align-items:center;gap:6px;color:#ffca28;text-decoration:none;font-size:.88rem;font-weight:500;margin-bottom:28px;opacity:.85;transition:opacity .2s; }
+    body { background:#0e0e0e; color:#e8e8e8; font-family:'Inter',sans-serif; }
+    .project-hero { background:linear-gradient(135deg,#1a1200,#3d2b00); padding:60px 24px 40px; }
+    .back-link { display:inline-flex;align-items:center;gap:6px;color:#ffca28;text-decoration:none;font-size:.88rem;font-weight:500;margin-bottom:28px;opacity:.85; }
     .back-link:hover { opacity:1; }
     .project-hero h1 { font-size:clamp(1.6rem,4vw,2.4rem);font-weight:700;margin-bottom:12px; }
-    .project-hero p { color:var(--muted);max-width:680px;font-size:1rem;line-height:1.7;margin-bottom:24px; }
+    .project-hero p { color:#888;max-width:680px;font-size:1rem;line-height:1.7;margin-bottom:24px; }
     .stat-row { display:flex;flex-wrap:wrap;gap:16px; }
-    .stat { background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:10px;padding:12px 20px; }
+    .stat { background:rgba(255,255,255,.05);border:1px solid #2a2a2a;border-radius:10px;padding:12px 20px; }
     .stat .val { font-size:1.3rem;font-weight:700;color:#ffca28; }
-    .stat .lbl { font-size:.73rem;color:var(--muted);margin-top:2px; }
-    .charts-section { padding:48px 24px 24px; }
-    .charts-section h2 { font-size:1.3rem;font-weight:600;margin-bottom:28px; }
-    .chart-grid { display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:24px; }
-    .chart-card { background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px; }
-    .chart-card h3 { font-size:.85rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;margin-bottom:16px; }
-    .chart-card canvas { width:100%!important; }
-    .code-section { padding:24px; }
-    .code-toggle { display:flex;align-items:center;gap:10px;cursor:pointer;user-select:none;margin-bottom:16px; }
-    .code-toggle h2 { font-size:1.1rem;font-weight:600;margin:0; }
-    .toggle-icon { font-size:1.2rem;transition:transform .3s; }
-    .toggle-icon.open { transform:rotate(90deg); }
-    pre { border-radius:10px;font-size:.86rem;line-height:1.65;overflow-x:auto;border:1px solid var(--border);display:none; }
-    pre.visible { display:block; }
+    .stat .lbl { font-size:.73rem;color:#888;margin-top:2px; }
     .tag-row { display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px; }
-    .tag { background:var(--surface2);border:1px solid var(--border);color:#aaa;padding:3px 12px;border-radius:6px;font-size:.78rem;font-weight:500; }
+    .tag { background:#1e1e1e;border:1px solid #2a2a2a;color:#aaa;padding:3px 12px;border-radius:6px;font-size:.78rem;font-weight:500; }
+    .charts-section { padding:48px 24px 24px;max-width:1100px;margin:0 auto; }
+    .charts-section > h2 { font-size:1.3rem;font-weight:600;margin-bottom:28px; }
+    .chart-grid { display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:24px; }
+    .chart-card { background:#161616;border:1px solid #2a2a2a;border-radius:12px;padding:20px; }
+    .chart-card h3 { font-size:.8rem;font-weight:600;color:#888;text-transform:uppercase;letter-spacing:.8px;margin-bottom:12px; }
+    .chart-wrap { position:relative;height:240px; }
+    .code-section { padding:24px;max-width:1100px;margin:0 auto; }
+    .code-toggle { display:flex;align-items:center;gap:10px;cursor:pointer;user-select:none;margin-bottom:16px;padding:14px 20px;background:#161616;border:1px solid #2a2a2a;border-radius:10px; }
+    .code-toggle h2 { font-size:1rem;font-weight:600;margin:0; }
+    .toggle-icon { transition:transform .3s;font-size:1rem; }
+    .toggle-icon.open { transform:rotate(90deg); }
+    #codeBlock { border-radius:10px;font-size:.86rem;line-height:1.65;overflow-x:auto;border:1px solid #2a2a2a;margin:0; }
     @media(max-width:700px){.chart-grid{grid-template-columns:1fr;}}
   </style>
 </head>
 <body>
   <div class="project-hero">
-    <div class="container">
+    <div style="max-width:1100px;margin:0 auto;">
       <a href="../../index.html" class="back-link">&#8592; Back to Portfolio</a>
       <h1>Real Estate Market Analysis</h1>
       <div class="tag-row">
         <span class="tag">Pandas</span><span class="tag">Seaborn</span>
         <span class="tag">Scikit-learn</span><span class="tag">Matplotlib</span>
       </div>
-      <p>Analyzed 5,200 property listings across 6 US metro areas from 2019–2024. Identified price drivers, appreciation curves, and built a linear regression model to estimate fair market value with R² ≈ 0.92.</p>
+      <p>Analyzed 5,200 property listings across 6 US metro areas from 2019–2024. Identified key price drivers and appreciation trends. Built a linear regression model to estimate fair market value (R² ≈ 0.92, MAE ≈ $28K).</p>
       <div class="stat-row">
         <div class="stat"><div class="val">5,200</div><div class="lbl">Property Listings</div></div>
         <div class="stat"><div class="val">6</div><div class="lbl">US Metro Areas</div></div>
         <div class="stat"><div class="val">R² 0.92</div><div class="lbl">Model Accuracy</div></div>
-        <div class="stat"><div class="val">~$28K</div><div class="lbl">Avg MAE</div></div>
+        <div class="stat"><div class="val">~$28K</div><div class="lbl">Mean Abs. Error</div></div>
       </div>
     </div>
   </div>
 
-  <section class="charts-section">
-    <div class="container">
-      <h2>Analysis &amp; Visualizations</h2>
-      <div class="chart-grid">
-        <div class="chart-card">
-          <h3>Median Home Price Appreciation ($K)</h3>
-          <canvas id="appreciation" height="220"></canvas>
-        </div>
-        <div class="chart-card">
-          <h3>Median Price per SqFt by Metro</h3>
-          <canvas id="pricePerSqft" height="220"></canvas>
-        </div>
-        <div class="chart-card">
-          <h3>Actual vs Predicted Sale Price ($K)</h3>
-          <canvas id="scatter" height="220"></canvas>
-        </div>
-        <div class="chart-card">
-          <h3>Top Price Drivers (Model Coefficients)</h3>
-          <canvas id="features" height="220"></canvas>
-        </div>
+  <div class="charts-section">
+    <h2>Analysis &amp; Visualizations</h2>
+    <div class="chart-grid">
+      <div class="chart-card">
+        <h3>Median Home Price by Metro ($K)</h3>
+        <div class="chart-wrap"><canvas id="c1"></canvas></div>
+      </div>
+      <div class="chart-card">
+        <h3>Median Price per SqFt by Metro</h3>
+        <div class="chart-wrap"><canvas id="c2"></canvas></div>
+      </div>
+      <div class="chart-card">
+        <h3>Actual vs Predicted Price — Sample ($K)</h3>
+        <div class="chart-wrap"><canvas id="c3"></canvas></div>
+      </div>
+      <div class="chart-card">
+        <h3>Top Price Drivers (Model Coefficients)</h3>
+        <div class="chart-wrap"><canvas id="c4"></canvas></div>
       </div>
     </div>
-  </section>
+  </div>
 
-  <section class="code-section">
-    <div class="container">
-      <div class="code-toggle" onclick="toggleCode()">
-        <span class="toggle-icon" id="toggleIcon">&#9654;</span>
-        <h2>View Source Code</h2>
-      </div>
-      <pre id="codeBlock"><code class="language-python" id="codeEl">Loading...</code></pre>
+  <div class="code-section">
+    <div class="code-toggle" onclick="toggleCode()">
+      <span class="toggle-icon" id="icon">&#9654;</span>
+      <h2>View Source Code (analysis.py)</h2>
     </div>
-  </section>
+    <pre id="codeBlock" style="display:none"><code class="language-python" id="codeEl">Loading...</code></pre>
+  </div>
 
   <script>
-    const gridColor = 'rgba(255,255,255,0.06)';
-    const tickColor = '#888';
-    const baseFont = { family: 'Inter', size: 11 };
-    const years = ['2019','2020','2021','2022','2023','2024'];
+    const G='rgba(255,255,255,0.06)',T='#888',F={family:'Inter',size:11};
 
-    // 1. Price appreciation by metro
-    new Chart(document.getElementById('appreciation'), {
-      type: 'line',
-      data: {
-        labels: years,
-        datasets: [
-          { label:'Denver',       data:[560,548,625,718,745,760], borderColor:'#4fc3f7', pointRadius:4, tension:0.35, fill:false },
-          { label:'Austin',       data:[480,465,560,665,712,730], borderColor:'#ffca28', pointRadius:4, tension:0.35, fill:false },
-          { label:'Nashville',    data:[430,422,498,572,605,618], borderColor:'#69f0ae', pointRadius:4, tension:0.35, fill:false },
-          { label:'Phoenix',      data:[395,385,452,532,568,580], borderColor:'#ef9a9a', pointRadius:4, tension:0.35, fill:false },
-          { label:'Charlotte',    data:[360,354,405,468,498,510], borderColor:'#ce93d8', pointRadius:4, tension:0.35, fill:false },
-          { label:'Indianapolis', data:[290,285,320,365,385,396], borderColor:'#ffb74d', pointRadius:4, tension:0.35, fill:false },
+    // 1 — Price appreciation lines
+    new Chart(document.getElementById('c1').getContext('2d'), {
+      type:'line',
+      data:{
+        labels:['2019','2020','2021','2022','2023','2024'],
+        datasets:[
+          {label:'Denver',      data:[560,548,625,718,745,760],borderColor:'#4fc3f7',pointRadius:4,tension:0.35,fill:false},
+          {label:'Austin',      data:[480,465,560,665,712,730],borderColor:'#ffca28',pointRadius:4,tension:0.35,fill:false},
+          {label:'Nashville',   data:[430,422,498,572,605,618],borderColor:'#69f0ae',pointRadius:4,tension:0.35,fill:false},
+          {label:'Phoenix',     data:[395,385,452,532,568,580],borderColor:'#ef9a9a',pointRadius:4,tension:0.35,fill:false},
+          {label:'Charlotte',   data:[360,354,405,468,498,510],borderColor:'#ce93d8',pointRadius:4,tension:0.35,fill:false},
+          {label:'Indianapolis',data:[290,285,320,365,385,396],borderColor:'#ffb74d',pointRadius:4,tension:0.35,fill:false}
         ]
       },
-      options: { responsive:true,
-        plugins:{legend:{labels:{color:'#ccc',font:baseFont,boxWidth:12}}},
-        scales:{
-          x:{grid:{color:gridColor},ticks:{color:tickColor,font:baseFont}},
-          y:{grid:{color:gridColor},ticks:{color:tickColor,font:baseFont,callback:v=>'$'+v+'K'}}
-        }
-      }
+      options:{responsive:true,maintainAspectRatio:false,
+        plugins:{legend:{labels:{color:'#ccc',font:F,boxWidth:12}}},
+        scales:{x:{grid:{color:G},ticks:{color:T,font:F}},y:{grid:{color:G},ticks:{color:T,font:F,callback:v=>'$'+v+'K'}}}}
     });
 
-    // 2. Median price/sqft by metro (bar)
-    new Chart(document.getElementById('pricePerSqft'), {
-      type: 'bar',
-      data: {
-        labels: ['Denver','Austin','Nashville','Phoenix','Charlotte','Indianapolis'],
-        datasets: [{ label:'$/sqft', data:[390,348,325,284,276,226],
+    // 2 — Price per sqft bar
+    new Chart(document.getElementById('c2').getContext('2d'), {
+      type:'bar',
+      data:{
+        labels:['Denver','Austin','Nashville','Phoenix','Charlotte','Indianapolis'],
+        datasets:[{label:'$/sqft',data:[390,348,325,284,276,226],
           backgroundColor:['#4fc3f7','#ffca28','#69f0ae','#ef9a9a','#ce93d8','#ffb74d'],
-          borderRadius:6, borderSkipped:false }]
+          borderRadius:6,borderSkipped:false}]
       },
-      options: { responsive:true, plugins:{legend:{display:false}},
-        scales:{
-          x:{grid:{color:gridColor},ticks:{color:tickColor,font:{family:'Inter',size:10}}},
-          y:{grid:{color:gridColor},ticks:{color:tickColor,font:baseFont,callback:v=>'$'+v}}
-        }
-      }
+      options:{responsive:true,maintainAspectRatio:false,
+        plugins:{legend:{display:false}},
+        scales:{x:{grid:{color:G},ticks:{color:T,font:{family:'Inter',size:10}}},y:{grid:{color:G},ticks:{color:T,font:F,callback:v=>'$'+v}}}}
     });
 
-    // 3. Scatter: actual vs predicted
-    const scatterData = [];
-    const seed = [312,425,580,290,650,470,380,720,510,445,610,340,490,555,415,680,365,528,462,595];
-    seed.forEach(actual => {
-      const predicted = actual + (Math.random() - 0.5) * 55;
-      scatterData.push({ x: actual, y: Math.round(predicted) });
-    });
-    new Chart(document.getElementById('scatter'), {
-      type: 'scatter',
-      data: {
-        datasets: [
-          { label:'Predictions', data:scatterData, backgroundColor:'rgba(255,202,40,0.6)', pointRadius:5 },
-          { label:'Perfect fit', data:[{x:250,y:250},{x:750,y:750}], type:'line', borderColor:'rgba(255,255,255,0.3)', borderDash:[5,4], pointRadius:0, borderWidth:1.5 }
+    // 3 — Actual vs Predicted (grouped bar, 8 sample properties)
+    const props = ['Prop A','Prop B','Prop C','Prop D','Prop E','Prop F','Prop G','Prop H'];
+    const actual    = [312,510,428,645,380,720,295,560];
+    const predicted = [328,492,441,631,395,708,312,548];
+    new Chart(document.getElementById('c3').getContext('2d'), {
+      type:'bar',
+      data:{
+        labels:props,
+        datasets:[
+          {label:'Actual',   data:actual,    backgroundColor:'rgba(255,202,40,0.8)',  borderRadius:4,borderSkipped:false},
+          {label:'Predicted',data:predicted, backgroundColor:'rgba(79,195,247,0.6)',  borderRadius:4,borderSkipped:false}
         ]
       },
-      options: { responsive:true,
-        plugins:{legend:{labels:{color:'#ccc',font:baseFont,filter:i=>i.datasetIndex===0}}},
-        scales:{
-          x:{grid:{color:gridColor},ticks:{color:tickColor,font:baseFont,callback:v=>'$'+v+'K'},title:{display:true,text:'Actual Price',color:tickColor,font:baseFont}},
-          y:{grid:{color:gridColor},ticks:{color:tickColor,font:baseFont,callback:v=>'$'+v+'K'},title:{display:true,text:'Predicted Price',color:tickColor,font:baseFont}}
-        }
-      }
+      options:{responsive:true,maintainAspectRatio:false,
+        plugins:{legend:{labels:{color:'#ccc',font:F}}},
+        scales:{x:{grid:{color:G},ticks:{color:T,font:{family:'Inter',size:10}}},y:{grid:{color:G},ticks:{color:T,font:F,callback:v=>'$'+v+'K'}}}}
     });
 
-    // 4. Feature importance (horizontal bar)
-    new Chart(document.getElementById('features'), {
-      type: 'bar',
-      data: {
-        labels: ['Sqft','Metro (Denver)','Metro (Austin)','Garage','Lot SqFt','Beds','Baths','Age','Metro (Nashville)','Property Type'],
-        datasets: [{ label:'Coefficient', data:[148,122,108,95,82,68,54,47,41,36],
-          backgroundColor: 'rgba(255,202,40,0.75)', borderRadius:4, borderSkipped:false }]
+    // 4 — Feature importance horizontal bar
+    new Chart(document.getElementById('c4').getContext('2d'), {
+      type:'bar',
+      data:{
+        labels:['Sqft','Metro: Denver','Metro: Austin','Garage','Lot SqFt','Bedrooms','Bathrooms','Age (neg)','Metro: Nashville','Prop. Type'],
+        datasets:[{label:'|Coefficient|',data:[148,122,108,95,82,68,54,47,41,36],
+          backgroundColor:'rgba(255,202,40,0.75)',borderRadius:4,borderSkipped:false}]
       },
-      options: { indexAxis:'y', responsive:true, plugins:{legend:{display:false}},
-        scales:{
-          x:{grid:{color:gridColor},ticks:{color:tickColor,font:baseFont}},
-          y:{grid:{color:'transparent'},ticks:{color:tickColor,font:{family:'Inter',size:10}}}
-        }
-      }
+      options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,
+        plugins:{legend:{display:false}},
+        scales:{x:{grid:{color:G},ticks:{color:T,font:F}},y:{grid:{color:'transparent'},ticks:{color:T,font:{family:'Inter',size:10}}}}}
     });
 
-    function toggleCode() {
-      document.getElementById('codeBlock').classList.toggle('visible');
-      document.getElementById('toggleIcon').classList.toggle('open');
+    function toggleCode(){
+      const el=document.getElementById('codeBlock');
+      const ic=document.getElementById('icon');
+      el.style.display = el.style.display==='none' ? 'block' : 'none';
+      ic.classList.toggle('open');
     }
+
     fetch('./analysis.py').then(r=>r.text()).then(code=>{
-      const el = document.getElementById('codeEl');
-      el.textContent = code;
+      const el=document.getElementById('codeEl');
+      el.textContent=code;
       hljs.highlightElement(el);
-    });
+    }).catch(()=>{});
   </script>
 </body>
 </html>
