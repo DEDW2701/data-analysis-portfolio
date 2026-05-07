@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Data Analysis Portfolio | DEDW2701</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-content">
+      <div class="avatar">DA</div>
+      <h1>Data Analysis Portfolio</h1>
+      <p class="subtitle">Turning raw data into actionable insights through Python, SQL, and visualization.</p>
+      <div class="badge-row">
+        <span class="badge">Python</span>
+        <span class="badge">Pandas</span>
+        <span class="badge">SQL</span>
+        <span class="badge">Matplotlib</span>
+        <span class="badge">Scikit-learn</span>
+        <span class="badge">Seaborn</span>
+      </div>
+      <a href="https://github.com/DEDW2701" target="_blank" class="btn-primary">View GitHub</a>
+    </div>
+  </header>
+
+  <!-- ABOUT -->
+  <section class="section about">
+    <div class="container">
+      <h2 class="section-title">About</h2>
+      <p>I'm a data analyst passionate about uncovering patterns hidden in complex datasets. My work spans exploratory data analysis, predictive modeling, and interactive dashboards. Each project below walks through the full pipeline — from raw data to clean insight.</p>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="section" id="projects">
+    <div class="container">
+      <h2 class="section-title">Projects</h2>
+      <div class="project-grid">
+
+        <!-- Project 1 -->
+        <div class="card">
+          <div class="card-header" style="background: linear-gradient(135deg, #1a1a2e, #16213e);">
+            <div class="chart-preview">
+              <div class="bar-chart">
+                <div class="bar" style="height:60%"></div>
+                <div class="bar" style="height:85%"></div>
+                <div class="bar" style="height:45%"></div>
+                <div class="bar" style="height:95%"></div>
+                <div class="bar" style="height:70%"></div>
+                <div class="bar" style="height:55%"></div>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <h3>Retail Sales Analysis</h3>
+            <p>Analyzed 2 years of retail transaction data to identify seasonal trends, top-performing product categories, and regional revenue patterns. Built an automated monthly report pipeline.</p>
+            <div class="tag-row">
+              <span class="tag">Pandas</span>
+              <span class="tag">Matplotlib</span>
+              <span class="tag">SQL</span>
+            </div>
+            <div class="card-links">
+              <a href="projects/retail-sales/analysis.py" class="link-btn">View Code</a>
+              <a href="https://github.com/DEDW2701" target="_blank" class="link-btn secondary">GitHub</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="card">
+          <div class="card-header" style="background: linear-gradient(135deg, #0d1b2a, #1b263b);">
+            <div class="chart-preview">
+              <svg viewBox="0 0 200 100" class="line-chart">
+                <polyline points="10,80 40,60 70,65 100,30 130,40 160,20 190,35"
+                  fill="none" stroke="#4fc3f7" stroke-width="2.5"/>
+                <polyline points="10,85 40,75 70,80 100,60 130,70 160,55 190,65"
+                  fill="none" stroke="#ef9a9a" stroke-width="2.5" stroke-dasharray="5,3"/>
+              </svg>
+            </div>
+          </div>
+          <div class="card-body">
+            <h3>COVID-19 Trend Analysis</h3>
+            <p>Explored global COVID-19 case, death, and vaccination data across 150+ countries. Compared pandemic trajectories and identified factors correlated with lower mortality rates.</p>
+            <div class="tag-row">
+              <span class="tag">Seaborn</span>
+              <span class="tag">Pandas</span>
+              <span class="tag">NumPy</span>
+            </div>
+            <div class="card-links">
+              <a href="projects/covid-analysis/analysis.py" class="link-btn">View Code</a>
+              <a href="https://github.com/DEDW2701" target="_blank" class="link-btn secondary">GitHub</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="card">
+          <div class="card-header" style="background: linear-gradient(135deg, #1a0533, #2d1b69);">
+            <div class="chart-preview">
+              <svg viewBox="0 0 160 160" class="donut-chart">
+                <circle cx="80" cy="80" r="55" fill="none" stroke="#7c4dff" stroke-width="22"
+                  stroke-dasharray="207 138" stroke-dashoffset="0"/>
+                <circle cx="80" cy="80" r="55" fill="none" stroke="#e040fb" stroke-width="22"
+                  stroke-dasharray="97 248" stroke-dashoffset="-207"/>
+                <circle cx="80" cy="80" r="55" fill="none" stroke="#40c4ff" stroke-width="22"
+                  stroke-dasharray="41 304" stroke-dashoffset="-304"/>
+                <text x="80" y="85" text-anchor="middle" fill="white" font-size="16" font-weight="600">Churn</text>
+              </svg>
+            </div>
+          </div>
+          <div class="card-body">
+            <h3>Customer Churn Prediction</h3>
+            <p>Built a logistic regression and random forest model to predict telecom customer churn with 87% accuracy. Feature importance analysis revealed top churn drivers including contract type and support calls.</p>
+            <div class="tag-row">
+              <span class="tag">Scikit-learn</span>
+              <span class="tag">Pandas</span>
+              <span class="tag">Seaborn</span>
+            </div>
+            <div class="card-links">
+              <a href="projects/customer-churn/analysis.py" class="link-btn">View Code</a>
+              <a href="https://github.com/DEDW2701" target="_blank" class="link-btn secondary">GitHub</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 4 -->
+        <div class="card">
+          <div class="card-header" style="background: linear-gradient(135deg, #0a2e0a, #1b5e20);">
+            <div class="chart-preview">
+              <svg viewBox="0 0 200 100" class="line-chart">
+                <defs>
+                  <linearGradient id="stockGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#69f0ae" stop-opacity="0.4"/>
+                    <stop offset="100%" stop-color="#69f0ae" stop-opacity="0"/>
+                  </linearGradient>
+                </defs>
+                <polygon points="10,90 25,70 45,75 65,50 85,55 110,35 135,40 160,20 185,30 190,90"
+                  fill="url(#stockGrad)"/>
+                <polyline points="10,90 25,70 45,75 65,50 85,55 110,35 135,40 160,20 185,30"
+                  fill="none" stroke="#69f0ae" stroke-width="2.5"/>
+              </svg>
+            </div>
+          </div>
+          <div class="card-body">
+            <h3>Stock Market EDA</h3>
+            <p>Exploratory analysis of S&amp;P 500 historical data covering 10 years. Investigated volatility clustering, sector correlations, and the impact of macroeconomic events on market returns.</p>
+            <div class="tag-row">
+              <span class="tag">yfinance</span>
+              <span class="tag">Pandas</span>
+              <span class="tag">Matplotlib</span>
+            </div>
+            <div class="card-links">
+              <a href="projects/stock-market/analysis.py" class="link-btn">View Code</a>
+              <a href="https://github.com/DEDW2701" target="_blank" class="link-btn secondary">GitHub</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="section skills-section">
+    <div class="container">
+      <h2 class="section-title">Skills &amp; Tools</h2>
+      <div class="skills-grid">
+        <div class="skill-group">
+          <h4>Languages</h4>
+          <ul>
+            <li>Python</li>
+            <li>SQL</li>
+            <li>R (basics)</li>
+          </ul>
+        </div>
+        <div class="skill-group">
+          <h4>Libraries</h4>
+          <ul>
+            <li>Pandas &amp; NumPy</li>
+            <li>Matplotlib &amp; Seaborn</li>
+            <li>Scikit-learn</li>
+            <li>Plotly</li>
+          </ul>
+        </div>
+        <div class="skill-group">
+          <h4>Data</h4>
+          <ul>
+            <li>Data Cleaning</li>
+            <li>EDA</li>
+            <li>Statistical Analysis</li>
+            <li>Predictive Modeling</li>
+          </ul>
+        </div>
+        <div class="skill-group">
+          <h4>Tools</h4>
+          <ul>
+            <li>Jupyter Notebook</li>
+            <li>VS Code</li>
+            <li>Git &amp; GitHub</li>
+            <li>Excel / Google Sheets</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section contact-section">
+    <div class="container center">
+      <h2 class="section-title">Get In Touch</h2>
+      <p>Interested in collaborating or have a data challenge? Reach out!</p>
+      <div class="contact-links">
+        <a href="https://github.com/DEDW2701" target="_blank" class="btn-primary">GitHub Profile</a>
+        <a href="mailto:ohiostate1771@gmail.com" class="btn-outline">Email Me</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Built by DEDW2701 &mdash; Data Analysis Portfolio &copy; 2026</p>
+  </footer>
+
+</body>
+</html>
