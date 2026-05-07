@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Supply Chain Lead Time Variance</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+  <link rel="stylesheet" href="../../style.css"/>
+  <style>
+    .project-hero { background: linear-gradient(135deg, #0d2818, #1a4731); padding: 60px 24px 40px; }
+    .back-link { display: inline-flex; align-items: center; gap: 6px; color: #69f0ae; text-decoration: none; font-size: 0.88rem; font-weight: 500; margin-bottom: 28px; opacity: 0.85; transition: opacity 0.2s; }
+    .back-link:hover { opacity: 1; }
+    .project-hero h1 { font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 700; margin-bottom: 12px; }
+    .project-hero p { color: var(--muted); max-width: 680px; font-size: 1rem; line-height: 1.7; margin-bottom: 24px; }
+    .stat-row { display: flex; flex-wrap: wrap; gap: 20px; }
+    .stat { background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 10px; padding: 12px 20px; }
+    .stat .val { font-size: 1.4rem; font-weight: 700; color: #69f0ae; }
+    .stat .lbl { font-size: 0.75rem; color: var(--muted); margin-top: 2px; }
+    .code-section { padding: 48px 24px; }
+    .code-section h2 { font-size: 0.8rem; font-weight: 600; margin-bottom: 20px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+    pre { border-radius: 10px; font-size: 0.88rem; line-height: 1.65; overflow-x: auto; border: 1px solid var(--border); }
+    .tag-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+    .tag { background: var(--surface2); border: 1px solid var(--border); color: #aaa; padding: 3px 12px; border-radius: 6px; font-size: 0.78rem; font-weight: 500; }
+  </style>
+</head>
+<body>
+  <div class="project-hero">
+    <div class="container">
+      <a href="../../index.html" class="back-link">&#8592; Back to Portfolio</a>
+      <h1>Supply Chain Lead Time Variance</h1>
+      <div class="tag-row">
+        <span class="tag">Pandas</span>
+        <span class="tag">Seaborn</span>
+        <span class="tag">NumPy</span>
+        <span class="tag">Matplotlib</span>
+      </div>
+      <p>Analyzed 3 years of purchase order data across 8 suppliers and 5 product categories. Identified root causes of delays, quantified holding cost impact, and built a weighted supplier reliability scorecard.</p>
+      <div class="stat-row">
+        <div class="stat"><div class="val">2,000</div><div class="lbl">Purchase Orders</div></div>
+        <div class="stat"><div class="val">8</div><div class="lbl">Suppliers Scored</div></div>
+        <div class="stat"><div class="val">5</div><div class="lbl">Delay Root Causes</div></div>
+        <div class="stat"><div class="val">4 Regions</div><div class="lbl">Domestic, Asia, Europe, S. America</div></div>
+      </div>
+    </div>
+  </div>
+
+  <section class="code-section">
+    <div class="container">
+      <h2>Source Code &mdash; analysis.py</h2>
+      <pre><code class="language-python" id="code-block">Loading...</code></pre>
+    </div>
+  </section>
+
+  <script>
+    fetch('./analysis.py')
+      .then(r => r.text())
+      .then(code => {
+        const el = document.getElementById('code-block');
+        el.textContent = code;
+        hljs.highlightElement(el);
+      });
+  </script>
+</body>
+</html>
