@@ -72,27 +72,34 @@
 
         <!-- Project 2 -->
         <div class="card">
-          <div class="card-header" style="background: linear-gradient(135deg, #0d1b2a, #1b263b);">
+          <div class="card-header" style="background: linear-gradient(135deg, #0d2818, #1a4731);">
             <div class="chart-preview">
-              <svg viewBox="0 0 200 100" class="line-chart">
-                <polyline points="10,80 40,60 70,65 100,30 130,40 160,20 190,35"
-                  fill="none" stroke="#4fc3f7" stroke-width="2.5"/>
-                <polyline points="10,85 40,75 70,80 100,60 130,70 160,55 190,65"
-                  fill="none" stroke="#ef9a9a" stroke-width="2.5" stroke-dasharray="5,3"/>
+              <svg viewBox="0 0 200 110" class="line-chart">
+                <!-- expected lead time baseline -->
+                <line x1="10" y1="55" x2="190" y2="55" stroke="#888" stroke-width="1.5" stroke-dasharray="6,3"/>
+                <!-- actual lead time variance -->
+                <polyline points="10,55 30,40 50,70 70,30 90,80 110,45 130,90 150,35 170,65 190,50"
+                  fill="none" stroke="#69f0ae" stroke-width="2.5"/>
+                <!-- variance fill above baseline -->
+                <polygon points="10,55 30,40 50,55 70,30 90,55 110,45 130,55 150,35 170,55 190,50 190,55 10,55"
+                  fill="rgba(105,240,174,0.15)"/>
+                <!-- variance fill below baseline -->
+                <polygon points="10,55 50,70 90,80 130,90 170,65 190,55"
+                  fill="rgba(239,154,154,0.15)"/>
               </svg>
             </div>
           </div>
           <div class="card-body">
-            <h3>COVID-19 Trend Analysis</h3>
-            <p>Explored global COVID-19 case, death, and vaccination data across 150+ countries. Compared pandemic trajectories and identified factors correlated with lower mortality rates.</p>
+            <h3>Supply Chain Lead Time Variance</h3>
+            <p>Analyzed lead time variance across 8 suppliers and 5 product categories over 3 years. Identified root causes of delays, quantified variance cost impact, and built a supplier reliability scorecard.</p>
             <div class="tag-row">
-              <span class="tag">Seaborn</span>
               <span class="tag">Pandas</span>
+              <span class="tag">Seaborn</span>
               <span class="tag">NumPy</span>
             </div>
             <div class="card-links">
-              <a href="projects/covid-analysis/analysis.py" class="link-btn">View Code</a>
-              <a href="https://github.com/DEDW2701" target="_blank" class="link-btn secondary">GitHub</a>
+              <a href="projects/supply-chain/analysis.py" class="link-btn">View Code</a>
+              <a href="https://github.com/DEDW2701/data-analysis-portfolio" target="_blank" class="link-btn secondary">GitHub</a>
             </div>
           </div>
         </div>
