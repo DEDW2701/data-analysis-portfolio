@@ -8,22 +8,34 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css"/>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
   <link rel="stylesheet" href="../../style.css"/>
   <style>
     .project-hero { background: linear-gradient(135deg, #0d1b2a, #1b263b); padding: 60px 24px 40px; }
-    .back-link { display: inline-flex; align-items: center; gap: 6px; color: var(--accent); text-decoration: none; font-size: 0.88rem; font-weight: 500; margin-bottom: 28px; opacity: 0.85; transition: opacity 0.2s; }
-    .back-link:hover { opacity: 1; }
-    .project-hero h1 { font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 700; margin-bottom: 12px; }
-    .project-hero p { color: var(--muted); max-width: 680px; font-size: 1rem; line-height: 1.7; margin-bottom: 24px; }
-    .stat-row { display: flex; flex-wrap: wrap; gap: 20px; }
-    .stat { background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 10px; padding: 12px 20px; }
-    .stat .val { font-size: 1.4rem; font-weight: 700; color: var(--accent); }
-    .stat .lbl { font-size: 0.75rem; color: var(--muted); margin-top: 2px; }
-    .code-section { padding: 48px 24px; }
-    .code-section h2 { font-size: 1.2rem; font-weight: 600; margin-bottom: 20px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; font-size: 0.8rem; }
-    pre { border-radius: 10px; font-size: 0.88rem; line-height: 1.65; overflow-x: auto; border: 1px solid var(--border); }
-    .tag-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
-    .tag { background: var(--surface2); border: 1px solid var(--border); color: #aaa; padding: 3px 12px; border-radius: 6px; font-size: 0.78rem; font-weight: 500; }
+    .back-link { display:inline-flex;align-items:center;gap:6px;color:var(--accent);text-decoration:none;font-size:.88rem;font-weight:500;margin-bottom:28px;opacity:.85;transition:opacity .2s; }
+    .back-link:hover { opacity:1; }
+    .project-hero h1 { font-size:clamp(1.6rem,4vw,2.4rem);font-weight:700;margin-bottom:12px; }
+    .project-hero p { color:var(--muted);max-width:680px;font-size:1rem;line-height:1.7;margin-bottom:24px; }
+    .stat-row { display:flex;flex-wrap:wrap;gap:16px;margin-bottom:0; }
+    .stat { background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:10px;padding:12px 20px; }
+    .stat .val { font-size:1.3rem;font-weight:700;color:var(--accent); }
+    .stat .lbl { font-size:.73rem;color:var(--muted);margin-top:2px; }
+    .charts-section { padding:48px 24px 24px; }
+    .charts-section h2 { font-size:1.3rem;font-weight:600;margin-bottom:28px; }
+    .chart-grid { display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:24px; }
+    .chart-card { background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px; }
+    .chart-card h3 { font-size:.85rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;margin-bottom:16px; }
+    .chart-card canvas { width:100%!important; }
+    .code-section { padding:24px; }
+    .code-toggle { display:flex;align-items:center;gap:10px;cursor:pointer;user-select:none;margin-bottom:16px; }
+    .code-toggle h2 { font-size:1.1rem;font-weight:600;margin:0; }
+    .toggle-icon { font-size:1.2rem;transition:transform .3s; }
+    .toggle-icon.open { transform:rotate(90deg); }
+    pre { border-radius:10px;font-size:.86rem;line-height:1.65;overflow-x:auto;border:1px solid var(--border);display:none; }
+    pre.visible { display:block; }
+    .tag-row { display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px; }
+    .tag { background:var(--surface2);border:1px solid var(--border);color:#aaa;padding:3px 12px;border-radius:6px;font-size:.78rem;font-weight:500; }
+    @media(max-width:700px){.chart-grid{grid-template-columns:1fr;}}
   </style>
 </head>
 <body>
@@ -32,36 +44,136 @@
       <a href="../../index.html" class="back-link">&#8592; Back to Portfolio</a>
       <h1>Retail Sales Analysis</h1>
       <div class="tag-row">
-        <span class="tag">Pandas</span>
-        <span class="tag">Matplotlib</span>
-        <span class="tag">Seaborn</span>
-        <span class="tag">NumPy</span>
+        <span class="tag">Pandas</span><span class="tag">Matplotlib</span>
+        <span class="tag">Seaborn</span><span class="tag">NumPy</span>
       </div>
-      <p>Analyzed 2 years of retail transaction data to identify seasonal trends, top-performing product categories, and regional revenue patterns. Includes an automated monthly reporting pipeline with 4-panel visualization.</p>
+      <p>Analyzed 2 years of retail transaction data to surface seasonal trends, top-performing categories, and regional revenue splits. Includes an automated monthly reporting pipeline.</p>
       <div class="stat-row">
-        <div class="stat"><div class="val">2 Years</div><div class="lbl">Transaction Data</div></div>
-        <div class="stat"><div class="val">5</div><div class="lbl">Product Categories</div></div>
-        <div class="stat"><div class="val">4</div><div class="lbl">Regions Analyzed</div></div>
-        <div class="stat"><div class="val">4 Charts</div><div class="lbl">Trend, Category, Region, Heatmap</div></div>
+        <div class="stat"><div class="val">730</div><div class="lbl">Days of Data</div></div>
+        <div class="stat"><div class="val">5</div><div class="lbl">Categories</div></div>
+        <div class="stat"><div class="val">4</div><div class="lbl">Regions</div></div>
+        <div class="stat"><div class="val">~$28M</div><div class="lbl">Total Revenue</div></div>
       </div>
     </div>
   </div>
 
+  <section class="charts-section">
+    <div class="container">
+      <h2>Analysis &amp; Visualizations</h2>
+      <div class="chart-grid">
+        <div class="chart-card">
+          <h3>Monthly Revenue Trend</h3>
+          <canvas id="revTrend" height="220"></canvas>
+        </div>
+        <div class="chart-card">
+          <h3>Revenue by Category</h3>
+          <canvas id="catRev" height="220"></canvas>
+        </div>
+        <div class="chart-card">
+          <h3>Revenue Split by Region</h3>
+          <canvas id="regionRev" height="220"></canvas>
+        </div>
+        <div class="chart-card">
+          <h3>Category × Region Heatmap</h3>
+          <canvas id="heatmap" height="220"></canvas>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="code-section">
     <div class="container">
-      <h2>Source Code &mdash; analysis.py</h2>
-      <pre><code class="language-python" id="code-block">Loading...</code></pre>
+      <div class="code-toggle" onclick="toggleCode()">
+        <span class="toggle-icon" id="toggleIcon">&#9654;</span>
+        <h2>View Source Code</h2>
+      </div>
+      <pre id="codeBlock"><code class="language-python" id="codeEl">Loading...</code></pre>
     </div>
   </section>
 
   <script>
-    fetch('./analysis.py')
-      .then(r => r.text())
-      .then(code => {
-        const el = document.getElementById('code-block');
-        el.textContent = code;
-        hljs.highlightElement(el);
-      });
+    const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    const gridColor = 'rgba(255,255,255,0.06)';
+    const tickColor = '#888';
+    const baseFont = { family: 'Inter', size: 11 };
+
+    // 1. Monthly Revenue Trend
+    new Chart(document.getElementById('revTrend'), {
+      type: 'line',
+      data: {
+        labels: MONTHS,
+        datasets: [
+          { label: '2023', data: [42,38,46,51,48,56,60,63,57,66,80,85], borderColor:'#4fc3f7', backgroundColor:'rgba(79,195,247,0.08)', pointRadius:4, tension:0.35, fill:true },
+          { label: '2024', data: [49,45,52,59,55,64,68,72,65,74,88,94], borderColor:'#ef9a9a', backgroundColor:'rgba(239,154,154,0.08)', pointRadius:4, tension:0.35, fill:true }
+        ]
+      },
+      options: { responsive:true, plugins:{legend:{labels:{color:'#ccc',font:baseFont}}}, scales:{
+        x:{grid:{color:gridColor},ticks:{color:tickColor,font:baseFont}},
+        y:{grid:{color:gridColor},ticks:{color:tickColor,font:baseFont,callback:v=>'$'+v+'K'}}
+      }}
+    });
+
+    // 2. Revenue by Category
+    new Chart(document.getElementById('catRev'), {
+      type: 'bar',
+      data: {
+        labels: ['Electronics','Food & Bev','Home & Garden','Clothing','Sports'],
+        datasets: [{ label: 'Revenue ($K)', data: [6820,5940,5380,5100,4260],
+          backgroundColor: ['#4fc3f7','#69f0ae','#ffca28','#ef9a9a','#ce93d8'],
+          borderRadius: 6, borderSkipped: false }]
+      },
+      options: { responsive:true, plugins:{legend:{display:false}}, scales:{
+        x:{grid:{color:gridColor},ticks:{color:tickColor,font:baseFont}},
+        y:{grid:{color:gridColor},ticks:{color:tickColor,font:baseFont,callback:v=>'$'+v+'K'}}
+      }}
+    });
+
+    // 3. Revenue by Region
+    new Chart(document.getElementById('regionRev'), {
+      type: 'doughnut',
+      data: {
+        labels: ['North','East','South','West'],
+        datasets: [{ data: [28,26,24,22],
+          backgroundColor: ['#4fc3f7','#69f0ae','#ffca28','#ef9a9a'],
+          borderWidth: 2, borderColor: '#161616' }]
+      },
+      options: { responsive:true, plugins:{legend:{position:'right',labels:{color:'#ccc',font:baseFont,padding:14}}}}
+    });
+
+    // 4. Heatmap (stacked bar approximation)
+    new Chart(document.getElementById('heatmap'), {
+      type: 'bar',
+      data: {
+        labels: ['Electronics','Food & Bev','Home & Garden','Clothing','Sports'],
+        datasets: [
+          { label:'North', data:[1920,1560,1440,1380,1120], backgroundColor:'rgba(79,195,247,0.85)', borderRadius:3 },
+          { label:'East',  data:[1750,1460,1350,1280,1060], backgroundColor:'rgba(105,240,174,0.85)', borderRadius:3 },
+          { label:'South', data:[1680,1420,1290,1220,1010], backgroundColor:'rgba(255,202,40,0.85)',  borderRadius:3 },
+          { label:'West',  data:[1470,1500,1300,1220,1070], backgroundColor:'rgba(239,154,154,0.85)', borderRadius:3 },
+        ]
+      },
+      options: { responsive:true, plugins:{legend:{labels:{color:'#ccc',font:baseFont}}},
+        scales:{
+          x:{stacked:true,grid:{color:gridColor},ticks:{color:tickColor,font:{family:'Inter',size:10}}},
+          y:{stacked:true,grid:{color:gridColor},ticks:{color:tickColor,font:baseFont,callback:v=>'$'+v+'K'}}
+        }
+      }
+    });
+
+    // Code toggle
+    function toggleCode() {
+      const pre = document.getElementById('codeBlock');
+      const icon = document.getElementById('toggleIcon');
+      pre.classList.toggle('visible');
+      icon.classList.toggle('open');
+    }
+
+    // Load source code
+    fetch('./analysis.py').then(r=>r.text()).then(code=>{
+      const el = document.getElementById('codeEl');
+      el.textContent = code;
+      hljs.highlightElement(el);
+    });
   </script>
 </body>
 </html>

@@ -8,22 +8,34 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css"/>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
   <link rel="stylesheet" href="../../style.css"/>
   <style>
     .project-hero { background: linear-gradient(135deg, #0a2e0a, #1b5e20); padding: 60px 24px 40px; }
-    .back-link { display: inline-flex; align-items: center; gap: 6px; color: #69f0ae; text-decoration: none; font-size: 0.88rem; font-weight: 500; margin-bottom: 28px; opacity: 0.85; transition: opacity 0.2s; }
-    .back-link:hover { opacity: 1; }
-    .project-hero h1 { font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 700; margin-bottom: 12px; }
-    .project-hero p { color: var(--muted); max-width: 680px; font-size: 1rem; line-height: 1.7; margin-bottom: 24px; }
-    .stat-row { display: flex; flex-wrap: wrap; gap: 20px; }
-    .stat { background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 10px; padding: 12px 20px; }
-    .stat .val { font-size: 1.4rem; font-weight: 700; color: #69f0ae; }
-    .stat .lbl { font-size: 0.75rem; color: var(--muted); margin-top: 2px; }
-    .code-section { padding: 48px 24px; }
-    .code-section h2 { font-size: 0.8rem; font-weight: 600; margin-bottom: 20px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
-    pre { border-radius: 10px; font-size: 0.88rem; line-height: 1.65; overflow-x: auto; border: 1px solid var(--border); }
-    .tag-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
-    .tag { background: var(--surface2); border: 1px solid var(--border); color: #aaa; padding: 3px 12px; border-radius: 6px; font-size: 0.78rem; font-weight: 500; }
+    .back-link { display:inline-flex;align-items:center;gap:6px;color:#69f0ae;text-decoration:none;font-size:.88rem;font-weight:500;margin-bottom:28px;opacity:.85;transition:opacity .2s; }
+    .back-link:hover { opacity:1; }
+    .project-hero h1 { font-size:clamp(1.6rem,4vw,2.4rem);font-weight:700;margin-bottom:12px; }
+    .project-hero p { color:var(--muted);max-width:680px;font-size:1rem;line-height:1.7;margin-bottom:24px; }
+    .stat-row { display:flex;flex-wrap:wrap;gap:16px; }
+    .stat { background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:10px;padding:12px 20px; }
+    .stat .val { font-size:1.3rem;font-weight:700;color:#69f0ae; }
+    .stat .lbl { font-size:.73rem;color:var(--muted);margin-top:2px; }
+    .charts-section { padding:48px 24px 24px; }
+    .charts-section h2 { font-size:1.3rem;font-weight:600;margin-bottom:28px; }
+    .chart-grid { display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:24px; }
+    .chart-card { background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px; }
+    .chart-card h3 { font-size:.85rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;margin-bottom:16px; }
+    .chart-card canvas { width:100%!important; }
+    .code-section { padding:24px; }
+    .code-toggle { display:flex;align-items:center;gap:10px;cursor:pointer;user-select:none;margin-bottom:16px; }
+    .code-toggle h2 { font-size:1.1rem;font-weight:600;margin:0; }
+    .toggle-icon { font-size:1.2rem;transition:transform .3s; }
+    .toggle-icon.open { transform:rotate(90deg); }
+    pre { border-radius:10px;font-size:.86rem;line-height:1.65;overflow-x:auto;border:1px solid var(--border);display:none; }
+    pre.visible { display:block; }
+    .tag-row { display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px; }
+    .tag { background:var(--surface2);border:1px solid var(--border);color:#aaa;padding:3px 12px;border-radius:6px;font-size:.78rem;font-weight:500; }
+    @media(max-width:700px){.chart-grid{grid-template-columns:1fr;}}
   </style>
 </head>
 <body>
@@ -32,36 +44,158 @@
       <a href="../../index.html" class="back-link">&#8592; Back to Portfolio</a>
       <h1>Stock Market EDA</h1>
       <div class="tag-row">
-        <span class="tag">yfinance</span>
-        <span class="tag">Pandas</span>
-        <span class="tag">Matplotlib</span>
-        <span class="tag">Seaborn</span>
+        <span class="tag">yfinance</span><span class="tag">Pandas</span>
+        <span class="tag">Matplotlib</span><span class="tag">Seaborn</span>
       </div>
-      <p>Exploratory analysis of S&amp;P 500 historical data covering 10 years across 5 sector ETFs. Investigated volatility clustering, cross-sector correlations, return distributions, and macroeconomic event impacts on market returns.</p>
+      <p>Exploratory analysis of S&amp;P 500 historical data across 5 sector ETFs over 10 years. Investigated volatility clustering, cross-sector return correlations, and macroeconomic event impacts on market performance.</p>
       <div class="stat-row">
-        <div class="stat"><div class="val">10 Years</div><div class="lbl">Historical Data</div></div>
+        <div class="stat"><div class="val">10 Years</div><div class="lbl">2014 – 2024</div></div>
         <div class="stat"><div class="val">5</div><div class="lbl">Sector ETFs</div></div>
         <div class="stat"><div class="val">2,500+</div><div class="lbl">Trading Days</div></div>
-        <div class="stat"><div class="val">4 Charts</div><div class="lbl">Performance, Volatility, Returns, Correlation</div></div>
+        <div class="stat"><div class="val">+182%</div><div class="lbl">S&amp;P 500 Total Return</div></div>
       </div>
     </div>
   </div>
 
+  <section class="charts-section">
+    <div class="container">
+      <h2>Analysis &amp; Visualizations</h2>
+      <div class="chart-grid">
+        <div class="chart-card">
+          <h3>Normalised Performance (Base = 100)</h3>
+          <canvas id="performance" height="220"></canvas>
+        </div>
+        <div class="chart-card">
+          <h3>Annualised Volatility by Sector (%)</h3>
+          <canvas id="volatility" height="220"></canvas>
+        </div>
+        <div class="chart-card">
+          <h3>S&amp;P 500 Daily Return Distribution</h3>
+          <canvas id="returns" height="220"></canvas>
+        </div>
+        <div class="chart-card">
+          <h3>Sector Return Correlation Matrix</h3>
+          <canvas id="corr" height="220"></canvas>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="code-section">
     <div class="container">
-      <h2>Source Code &mdash; analysis.py</h2>
-      <pre><code class="language-python" id="code-block">Loading...</code></pre>
+      <div class="code-toggle" onclick="toggleCode()">
+        <span class="toggle-icon" id="toggleIcon">&#9654;</span>
+        <h2>View Source Code</h2>
+      </div>
+      <pre id="codeBlock"><code class="language-python" id="codeEl">Loading...</code></pre>
     </div>
   </section>
 
   <script>
-    fetch('./analysis.py')
-      .then(r => r.text())
-      .then(code => {
-        const el = document.getElementById('code-block');
-        el.textContent = code;
-        hljs.highlightElement(el);
-      });
+    const gridColor = 'rgba(255,255,255,0.06)';
+    const tickColor = '#888';
+    const baseFont = { family: 'Inter', size: 11 };
+    const years = ['2014','2015','2016','2017','2018','2019','2020','2021','2022','2023','2024'];
+
+    // 1. Normalised performance (yearly base-100 index)
+    new Chart(document.getElementById('performance'), {
+      type: 'line',
+      data: {
+        labels: years,
+        datasets: [
+          { label:'S&P 500',       data:[100,100,111,128,122,161,191,246,201,254,282], borderColor:'#4fc3f7', pointRadius:3, tension:0.3, fill:false },
+          { label:'Tech (NASDAQ)', data:[100,98,116,152,133,196,271,374,268,374,428], borderColor:'#ffca28', pointRadius:3, tension:0.3, fill:false },
+          { label:'Healthcare',    data:[100,108,112,131,122,148,167,198,182,205,224], borderColor:'#69f0ae', pointRadius:3, tension:0.3, fill:false },
+          { label:'Financials',    data:[100,97,118,140,127,162,158,208,185,218,248], borderColor:'#ce93d8', pointRadius:3, tension:0.3, fill:false },
+          { label:'Energy',        data:[100,78,80,82,72,82,55,82,118,122,108],        borderColor:'#ef9a9a', pointRadius:3, tension:0.3, fill:false },
+        ]
+      },
+      options: { responsive:true,
+        plugins:{legend:{labels:{color:'#ccc',font:baseFont,boxWidth:12}}},
+        scales:{
+          x:{grid:{color:gridColor},ticks:{color:tickColor,font:baseFont}},
+          y:{grid:{color:gridColor},ticks:{color:tickColor,font:baseFont}}
+        }
+      }
+    });
+
+    // 2. Annualised volatility (bar)
+    new Chart(document.getElementById('volatility'), {
+      type: 'bar',
+      data: {
+        labels: ['Energy','Tech (NASDAQ)','Financials','S&P 500','Healthcare'],
+        datasets: [{ label:'Avg Annualised Vol (%)', data:[28.4,21.8,18.6,15.2,13.8],
+          backgroundColor:['#ef9a9a','#ffca28','#ce93d8','#4fc3f7','#69f0ae'],
+          borderRadius:6, borderSkipped:false }]
+      },
+      options: { responsive:true, plugins:{legend:{display:false}},
+        scales:{
+          x:{grid:{color:gridColor},ticks:{color:tickColor,font:{family:'Inter',size:10}}},
+          y:{grid:{color:gridColor},ticks:{color:tickColor,font:baseFont,callback:v=>v+'%'}}
+        }
+      }
+    });
+
+    // 3. Daily return distribution (histogram via bar)
+    const bins = ['-3%','-2.5%','-2%','-1.5%','-1%','-0.5%','0%','+0.5%','+1%','+1.5%','+2%','+2.5%','+3%'];
+    const freq  = [8,18,42,88,165,280,312,272,158,80,38,20,9];
+    new Chart(document.getElementById('returns'), {
+      type: 'bar',
+      data: {
+        labels: bins,
+        datasets: [{ label:'Frequency', data:freq,
+          backgroundColor: freq.map((_, i) => i < 6 ? 'rgba(239,154,154,0.7)' : i === 6 ? 'rgba(200,200,200,0.5)' : 'rgba(105,240,174,0.7)'),
+          borderRadius:3, borderSkipped:false, categoryPercentage:0.95, barPercentage:0.95 }]
+      },
+      options: { responsive:true, plugins:{legend:{display:false}},
+        scales:{
+          x:{grid:{color:gridColor},ticks:{color:tickColor,font:{family:'Inter',size:9}}},
+          y:{grid:{color:gridColor},ticks:{color:tickColor,font:baseFont},title:{display:true,text:'Days',color:tickColor,font:baseFont}}
+        }
+      }
+    });
+
+    // 4. Correlation matrix (bubble/scatter approximation via grouped bar)
+    const sectors = ['S&P500','Tech','Health','Finance','Energy'];
+    // Correlation as stacked grouped bars (each row as a dataset)
+    const corrMatrix = [
+      [1.00, 0.92, 0.78, 0.86, 0.62],
+      [0.92, 1.00, 0.70, 0.80, 0.55],
+      [0.78, 0.70, 1.00, 0.68, 0.48],
+      [0.86, 0.80, 0.68, 1.00, 0.70],
+      [0.62, 0.55, 0.48, 0.70, 1.00],
+    ];
+    const corrColors = ['#4fc3f7','#ffca28','#69f0ae','#ce93d8','#ef9a9a'];
+    new Chart(document.getElementById('corr'), {
+      type: 'bar',
+      data: {
+        labels: sectors,
+        datasets: sectors.map((s, i) => ({
+          label: s,
+          data: corrMatrix[i],
+          backgroundColor: corrColors[i] + 'cc',
+          borderRadius: 3,
+          borderSkipped: false,
+        }))
+      },
+      options: { responsive:true,
+        plugins:{legend:{labels:{color:'#ccc',font:baseFont,boxWidth:10}}},
+        scales:{
+          x:{grid:{color:gridColor},ticks:{color:tickColor,font:baseFont}},
+          y:{grid:{color:gridColor},ticks:{color:tickColor,font:baseFont},min:0,max:1.1,title:{display:true,text:'Correlation',color:tickColor,font:baseFont}}
+        }
+      }
+    });
+
+    function toggleCode() {
+      document.getElementById('codeBlock').classList.toggle('visible');
+      document.getElementById('toggleIcon').classList.toggle('open');
+    }
+    fetch('./analysis.py').then(r=>r.text()).then(code=>{
+      const el = document.getElementById('codeEl');
+      el.textContent = code;
+      hljs.highlightElement(el);
+    });
   </script>
 </body>
 </html>

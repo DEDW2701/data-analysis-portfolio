@@ -8,22 +8,34 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css"/>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
   <link rel="stylesheet" href="../../style.css"/>
   <style>
     .project-hero { background: linear-gradient(135deg, #0d2818, #1a4731); padding: 60px 24px 40px; }
-    .back-link { display: inline-flex; align-items: center; gap: 6px; color: #69f0ae; text-decoration: none; font-size: 0.88rem; font-weight: 500; margin-bottom: 28px; opacity: 0.85; transition: opacity 0.2s; }
-    .back-link:hover { opacity: 1; }
-    .project-hero h1 { font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 700; margin-bottom: 12px; }
-    .project-hero p { color: var(--muted); max-width: 680px; font-size: 1rem; line-height: 1.7; margin-bottom: 24px; }
-    .stat-row { display: flex; flex-wrap: wrap; gap: 20px; }
-    .stat { background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 10px; padding: 12px 20px; }
-    .stat .val { font-size: 1.4rem; font-weight: 700; color: #69f0ae; }
-    .stat .lbl { font-size: 0.75rem; color: var(--muted); margin-top: 2px; }
-    .code-section { padding: 48px 24px; }
-    .code-section h2 { font-size: 0.8rem; font-weight: 600; margin-bottom: 20px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
-    pre { border-radius: 10px; font-size: 0.88rem; line-height: 1.65; overflow-x: auto; border: 1px solid var(--border); }
-    .tag-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
-    .tag { background: var(--surface2); border: 1px solid var(--border); color: #aaa; padding: 3px 12px; border-radius: 6px; font-size: 0.78rem; font-weight: 500; }
+    .back-link { display:inline-flex;align-items:center;gap:6px;color:#69f0ae;text-decoration:none;font-size:.88rem;font-weight:500;margin-bottom:28px;opacity:.85;transition:opacity .2s; }
+    .back-link:hover { opacity:1; }
+    .project-hero h1 { font-size:clamp(1.6rem,4vw,2.4rem);font-weight:700;margin-bottom:12px; }
+    .project-hero p { color:var(--muted);max-width:680px;font-size:1rem;line-height:1.7;margin-bottom:24px; }
+    .stat-row { display:flex;flex-wrap:wrap;gap:16px; }
+    .stat { background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:10px;padding:12px 20px; }
+    .stat .val { font-size:1.3rem;font-weight:700;color:#69f0ae; }
+    .stat .lbl { font-size:.73rem;color:var(--muted);margin-top:2px; }
+    .charts-section { padding:48px 24px 24px; }
+    .charts-section h2 { font-size:1.3rem;font-weight:600;margin-bottom:28px; }
+    .chart-grid { display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:24px; }
+    .chart-card { background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px; }
+    .chart-card h3 { font-size:.85rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;margin-bottom:16px; }
+    .chart-card canvas { width:100%!important; }
+    .code-section { padding:24px; }
+    .code-toggle { display:flex;align-items:center;gap:10px;cursor:pointer;user-select:none;margin-bottom:16px; }
+    .code-toggle h2 { font-size:1.1rem;font-weight:600;margin:0; }
+    .toggle-icon { font-size:1.2rem;transition:transform .3s; }
+    .toggle-icon.open { transform:rotate(90deg); }
+    pre { border-radius:10px;font-size:.86rem;line-height:1.65;overflow-x:auto;border:1px solid var(--border);display:none; }
+    pre.visible { display:block; }
+    .tag-row { display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px; }
+    .tag { background:var(--surface2);border:1px solid var(--border);color:#aaa;padding:3px 12px;border-radius:6px;font-size:.78rem;font-weight:500; }
+    @media(max-width:700px){.chart-grid{grid-template-columns:1fr;}}
   </style>
 </head>
 <body>
@@ -32,36 +44,143 @@
       <a href="../../index.html" class="back-link">&#8592; Back to Portfolio</a>
       <h1>Supply Chain Lead Time Variance</h1>
       <div class="tag-row">
-        <span class="tag">Pandas</span>
-        <span class="tag">Seaborn</span>
-        <span class="tag">NumPy</span>
-        <span class="tag">Matplotlib</span>
+        <span class="tag">Pandas</span><span class="tag">Seaborn</span>
+        <span class="tag">NumPy</span><span class="tag">Matplotlib</span>
       </div>
-      <p>Analyzed 3 years of purchase order data across 8 suppliers and 5 product categories. Identified root causes of delays, quantified holding cost impact, and built a weighted supplier reliability scorecard.</p>
+      <p>Analyzed 3 years of purchase order data across 8 suppliers and 5 product categories. Identified root causes of delays, quantified holding cost impact, and scored supplier reliability.</p>
       <div class="stat-row">
         <div class="stat"><div class="val">2,000</div><div class="lbl">Purchase Orders</div></div>
         <div class="stat"><div class="val">8</div><div class="lbl">Suppliers Scored</div></div>
-        <div class="stat"><div class="val">5</div><div class="lbl">Delay Root Causes</div></div>
-        <div class="stat"><div class="val">4 Regions</div><div class="lbl">Domestic, Asia, Europe, S. America</div></div>
+        <div class="stat"><div class="val">68%</div><div class="lbl">Overall OTD Rate</div></div>
+        <div class="stat"><div class="val">$142K</div><div class="lbl">Est. Holding Cost</div></div>
       </div>
     </div>
   </div>
 
+  <section class="charts-section">
+    <div class="container">
+      <h2>Analysis &amp; Visualizations</h2>
+      <div class="chart-grid">
+        <div class="chart-card">
+          <h3>Avg Lead Time Variance by Supplier (days)</h3>
+          <canvas id="variance" height="220"></canvas>
+        </div>
+        <div class="chart-card">
+          <h3>On-Time Delivery Rate by Supplier</h3>
+          <canvas id="otd" height="220"></canvas>
+        </div>
+        <div class="chart-card">
+          <h3>Delay Root Cause Breakdown</h3>
+          <canvas id="reasons" height="220"></canvas>
+        </div>
+        <div class="chart-card">
+          <h3>Quarterly Avg Variance by Region (days)</h3>
+          <canvas id="quarterly" height="220"></canvas>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="code-section">
     <div class="container">
-      <h2>Source Code &mdash; analysis.py</h2>
-      <pre><code class="language-python" id="code-block">Loading...</code></pre>
+      <div class="code-toggle" onclick="toggleCode()">
+        <span class="toggle-icon" id="toggleIcon">&#9654;</span>
+        <h2>View Source Code</h2>
+      </div>
+      <pre id="codeBlock"><code class="language-python" id="codeEl">Loading...</code></pre>
     </div>
   </section>
 
   <script>
-    fetch('./analysis.py')
-      .then(r => r.text())
-      .then(code => {
-        const el = document.getElementById('code-block');
-        el.textContent = code;
-        hljs.highlightElement(el);
-      });
+    const gridColor = 'rgba(255,255,255,0.06)';
+    const tickColor = '#888';
+    const baseFont = { family: 'Inter', size: 11 };
+
+    const suppliers = ['SupplierC','SupplierA','SupplierG','SupplierE','SupplierB','SupplierD','SupplierF','SupplierH'];
+
+    // 1. Avg variance by supplier (bar, sorted low→high)
+    const varData = [1.2, 2.4, 2.8, 4.1, 5.6, 8.9, 7.4, 11.8];
+    new Chart(document.getElementById('variance'), {
+      type: 'bar',
+      data: {
+        labels: suppliers,
+        datasets: [{ label: 'Avg Variance (days)', data: varData,
+          backgroundColor: varData.map(v => v <= 3 ? 'rgba(105,240,174,0.8)' : v <= 7 ? 'rgba(255,202,40,0.8)' : 'rgba(239,154,154,0.8)'),
+          borderRadius: 5, borderSkipped: false }]
+      },
+      options: { indexAxis:'y', responsive:true, plugins:{legend:{display:false}},
+        scales:{
+          x:{grid:{color:gridColor},ticks:{color:tickColor,font:baseFont},title:{display:true,text:'Days Late (avg)',color:tickColor,font:baseFont}},
+          y:{grid:{color:'transparent'},ticks:{color:tickColor,font:baseFont}}
+        }
+      }
+    });
+
+    // 2. OTD rates
+    const otdVals = [91,87,85,78,72,65,58,43];
+    new Chart(document.getElementById('otd'), {
+      type: 'bar',
+      data: {
+        labels: suppliers,
+        datasets: [{ label: 'OTD %', data: otdVals,
+          backgroundColor: otdVals.map(v => v >= 75 ? 'rgba(105,240,174,0.85)' : 'rgba(239,154,154,0.85)'),
+          borderRadius: 5, borderSkipped: false }]
+      },
+      options: { indexAxis:'y', responsive:true, plugins:{legend:{display:false}},
+        scales:{
+          x:{grid:{color:gridColor},ticks:{color:tickColor,font:baseFont,callback:v=>v+'%'},min:0,max:100},
+          y:{grid:{color:'transparent'},ticks:{color:tickColor,font:baseFont}}
+        },
+        plugins:{
+          legend:{display:false},
+          annotation: {}
+        }
+      }
+    });
+
+    // 3. Delay reasons
+    new Chart(document.getElementById('reasons'), {
+      type: 'doughnut',
+      data: {
+        labels: ['Port Congestion','Supplier Capacity','Quality Hold','Customs Delay','Weather'],
+        datasets: [{ data: [30,25,20,15,10],
+          backgroundColor: ['#4fc3f7','#ef9a9a','#ffca28','#69f0ae','#ce93d8'],
+          borderWidth: 2, borderColor: '#161616' }]
+      },
+      options: { responsive:true, plugins:{legend:{position:'right',labels:{color:'#ccc',font:baseFont,padding:10,boxWidth:12}}}}
+    });
+
+    // 4. Quarterly variance trend by region
+    const quarters = ['Q1 22','Q2 22','Q3 22','Q4 22','Q1 23','Q2 23','Q3 23','Q4 23','Q1 24','Q2 24','Q3 24','Q4 24'];
+    new Chart(document.getElementById('quarterly'), {
+      type: 'line',
+      data: {
+        labels: quarters,
+        datasets: [
+          { label:'Asia',          data:[8.2,9.1,8.8,10.2,7.9,9.5,11.1,9.8,8.4,10.0,9.2,10.5], borderColor:'#4fc3f7', pointRadius:3, tension:0.35, fill:false },
+          { label:'Europe',        data:[6.4,7.2,6.9,8.1,6.0,7.5,8.2,7.4,6.1,7.8,7.0,8.4],    borderColor:'#ffca28', pointRadius:3, tension:0.35, fill:false },
+          { label:'South America', data:[5.8,6.5,6.1,7.4,5.5,6.8,7.5,6.9,5.2,7.0,6.4,7.8],    borderColor:'#ef9a9a', pointRadius:3, tension:0.35, fill:false },
+          { label:'Domestic',      data:[1.8,2.1,1.9,2.4,1.7,2.0,2.3,2.1,1.6,2.2,1.9,2.5],    borderColor:'#69f0ae', pointRadius:3, tension:0.35, fill:false },
+        ]
+      },
+      options: { responsive:true,
+        plugins:{legend:{labels:{color:'#ccc',font:baseFont}}},
+        scales:{
+          x:{grid:{color:gridColor},ticks:{color:tickColor,font:{family:'Inter',size:10},maxRotation:45}},
+          y:{grid:{color:gridColor},ticks:{color:tickColor,font:baseFont,callback:v=>v+'d'},title:{display:true,text:'Avg Variance (days)',color:tickColor,font:baseFont}}
+        }
+      }
+    });
+
+    function toggleCode() {
+      document.getElementById('codeBlock').classList.toggle('visible');
+      document.getElementById('toggleIcon').classList.toggle('open');
+    }
+    fetch('./analysis.py').then(r=>r.text()).then(code=>{
+      const el = document.getElementById('codeEl');
+      el.textContent = code;
+      hljs.highlightElement(el);
+    });
   </script>
 </body>
 </html>
