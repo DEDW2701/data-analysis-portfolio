@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Real Estate Market Analysis</title>
+  <title>DFW Real Estate Market Analysis</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css"/>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
@@ -16,7 +16,7 @@
     .back-link { display:inline-flex;align-items:center;gap:6px;color:#ffca28;text-decoration:none;font-size:.88rem;font-weight:500;margin-bottom:28px;opacity:.85; }
     .back-link:hover { opacity:1; }
     .project-hero h1 { font-size:clamp(1.6rem,4vw,2.4rem);font-weight:700;margin-bottom:12px; }
-    .project-hero p { color:#888;max-width:680px;font-size:1rem;line-height:1.7;margin-bottom:24px; }
+    .project-hero p { color:#888;max-width:720px;font-size:1rem;line-height:1.7;margin-bottom:24px; }
     .stat-row { display:flex;flex-wrap:wrap;gap:16px; }
     .stat { background:rgba(255,255,255,.05);border:1px solid #2a2a2a;border-radius:10px;padding:12px 20px; }
     .stat .val { font-size:1.3rem;font-weight:700;color:#ffca28; }
@@ -29,53 +29,110 @@
     .chart-card { background:#161616;border:1px solid #2a2a2a;border-radius:12px;padding:20px; }
     .chart-card h3 { font-size:.8rem;font-weight:600;color:#888;text-transform:uppercase;letter-spacing:.8px;margin-bottom:12px; }
     .chart-wrap { position:relative;height:240px; }
+    .acq-section { padding:0 24px 56px;max-width:1100px;margin:0 auto; }
+    .acq-section > h2 { font-size:1.3rem;font-weight:600;margin-bottom:6px; }
+    .acq-subtitle { color:#888;font-size:.9rem;margin-bottom:24px; }
+    .acq-grid { display:grid;grid-template-columns:1fr 1fr;gap:24px; }
+    .acq-table { width:100%;border-collapse:collapse; }
+    .acq-table tr { border-bottom:1px solid #2a2a2a; }
+    .acq-table td { padding:9px 4px;font-size:.88rem; }
+    .acq-table td:first-child { color:#888; }
+    .acq-table td:last-child { text-align:right;font-weight:600; }
+    .positive { color:#69f0ae; }
+    .negative { color:#ef9a9a; }
+    .highlight { color:#ffca28; }
     .code-section { padding:24px;max-width:1100px;margin:0 auto; }
     .code-toggle { display:flex;align-items:center;gap:10px;cursor:pointer;user-select:none;margin-bottom:16px;padding:14px 20px;background:#161616;border:1px solid #2a2a2a;border-radius:10px; }
     .code-toggle h2 { font-size:1rem;font-weight:600;margin:0; }
     .toggle-icon { transition:transform .3s;font-size:1rem; }
     .toggle-icon.open { transform:rotate(90deg); }
     #codeBlock { border-radius:10px;font-size:.86rem;line-height:1.65;overflow-x:auto;border:1px solid #2a2a2a;margin:0; }
-    @media(max-width:700px){.chart-grid{grid-template-columns:1fr;}}
+    @media(max-width:700px){ .chart-grid{grid-template-columns:1fr;} .acq-grid{grid-template-columns:1fr;} }
   </style>
 </head>
 <body>
+
   <div class="project-hero">
     <div style="max-width:1100px;margin:0 auto;">
       <a href="../../index.html" class="back-link">&#8592; Back to Portfolio</a>
-      <h1>Real Estate Market Analysis</h1>
+      <h1>Dallas–Fort Worth Real Estate Market Analysis</h1>
       <div class="tag-row">
-        <span class="tag">Pandas</span><span class="tag">Seaborn</span>
-        <span class="tag">Scikit-learn</span><span class="tag">Matplotlib</span>
+        <span class="tag">Pandas</span>
+        <span class="tag">Seaborn</span>
+        <span class="tag">Scikit-learn</span>
+        <span class="tag">Matplotlib</span>
       </div>
-      <p>Analyzed 5,200 property listings across 6 US metro areas from 2019–2024. Identified key price drivers and appreciation trends. Built a linear regression model to estimate fair market value (R² ≈ 0.92, MAE ≈ $28K).</p>
+      <p>Analyzed 3,800+ property listings across 6 DFW submarkets from 2020–2024 to identify price trends, appreciation patterns, and price-per-sqft anomalies. Identified Fort Worth as the highest-opportunity submarket based on cap rate and rent growth trajectory. Built a 5-year acquisition pro forma with monthly cash flow projections and full ROI modeling including appreciation, loan paydown, and IRR.</p>
       <div class="stat-row">
-        <div class="stat"><div class="val">5,200</div><div class="lbl">Property Listings</div></div>
-        <div class="stat"><div class="val">6</div><div class="lbl">US Metro Areas</div></div>
-        <div class="stat"><div class="val">R² 0.92</div><div class="lbl">Model Accuracy</div></div>
-        <div class="stat"><div class="val">~$28K</div><div class="lbl">Mean Abs. Error</div></div>
+        <div class="stat"><div class="val">3,800+</div><div class="lbl">Listings Analyzed</div></div>
+        <div class="stat"><div class="val">6</div><div class="lbl">DFW Submarkets</div></div>
+        <div class="stat"><div class="val">4.87%</div><div class="lbl">Target Cap Rate</div></div>
+        <div class="stat"><div class="val">~15%</div><div class="lbl">Projected 5-Yr IRR</div></div>
       </div>
     </div>
   </div>
 
   <div class="charts-section">
-    <h2>Analysis &amp; Visualizations</h2>
+    <h2>Market Analysis &amp; Visualizations</h2>
     <div class="chart-grid">
+
       <div class="chart-card">
-        <h3>Median Home Price by Metro ($K)</h3>
+        <h3>Median Home Price by DFW Submarket ($K)</h3>
         <div class="chart-wrap"><canvas id="c1"></canvas></div>
       </div>
+
       <div class="chart-card">
-        <h3>Median Price per SqFt by Metro</h3>
+        <h3>Price per SqFt by Submarket — 2024</h3>
         <div class="chart-wrap"><canvas id="c2"></canvas></div>
       </div>
+
       <div class="chart-card">
-        <h3>Actual vs Predicted Price — Sample ($K)</h3>
+        <h3>5-Year Monthly Cash Flow Projection</h3>
         <div class="chart-wrap"><canvas id="c3"></canvas></div>
       </div>
+
       <div class="chart-card">
-        <h3>Top Price Drivers (Model Coefficients)</h3>
+        <h3>Cumulative 5-Year Return Components ($)</h3>
         <div class="chart-wrap"><canvas id="c4"></canvas></div>
       </div>
+
+    </div>
+  </div>
+
+  <div class="acq-section">
+    <h2>Target Acquisition — Fort Worth, TX</h2>
+    <p class="acq-subtitle">3BR / 2BA &middot; 1,580 sqft &middot; Fort Worth West Side &middot; Selected via cap rate screening and rent-to-price ratio analysis across 3,800+ listings</p>
+    <div class="acq-grid">
+
+      <div class="chart-card">
+        <h3>Purchase &amp; Financing Summary</h3>
+        <table class="acq-table">
+          <tr><td>Purchase Price</td><td>$295,000</td></tr>
+          <tr><td>Down Payment (20%)</td><td>$59,000</td></tr>
+          <tr><td>Loan Amount</td><td>$236,000</td></tr>
+          <tr><td>Interest Rate / Term</td><td>6.75% / 30 yr</td></tr>
+          <tr><td>Monthly P&amp;I</td><td>$1,531</td></tr>
+          <tr><td>Market Rent</td><td>$2,200 / mo</td></tr>
+          <tr><td>Gross Annual Yield</td><td>8.95%</td></tr>
+          <tr><td>Cap Rate</td><td class="highlight">4.87%</td></tr>
+          <tr><td>Year 1 Monthly Cash Flow</td><td class="negative">&#8722;$333 / mo</td></tr>
+          <tr><td>Break-even (positive CF)</td><td class="positive">Year 5</td></tr>
+        </table>
+      </div>
+
+      <div class="chart-card">
+        <h3>Projected 5-Year Returns</h3>
+        <table class="acq-table">
+          <tr><td>Appreciation (4% / yr)</td><td class="positive">+ $64,500</td></tr>
+          <tr><td>Loan Principal Paydown</td><td class="positive">+ $9,000</td></tr>
+          <tr><td>Cumulative Cash Flows</td><td class="negative">&#8722; $9,600</td></tr>
+          <tr><td>Net Equity Gain</td><td class="positive">+ $63,900</td></tr>
+          <tr><td>Total Capital Deployed</td><td>$68,600</td></tr>
+          <tr><td>5-Year Total Return</td><td class="highlight">93.1%</td></tr>
+          <tr><td>Projected IRR</td><td class="highlight">~15%</td></tr>
+        </table>
+      </div>
+
     </div>
   </div>
 
@@ -88,70 +145,121 @@
   </div>
 
   <script>
-    const G='rgba(255,255,255,0.06)',T='#888',F={family:'Inter',size:11};
+    const G='rgba(255,255,255,0.06)', T='#888', F={family:'Inter',size:11};
 
-    // 1 — Price appreciation lines
+    // Chart 1 — DFW Submarket Price Trends (2020–2024)
     new Chart(document.getElementById('c1').getContext('2d'), {
-      type:'line',
-      data:{
-        labels:['2019','2020','2021','2022','2023','2024'],
-        datasets:[
-          {label:'Denver',      data:[560,548,625,718,745,760],borderColor:'#4fc3f7',pointRadius:4,tension:0.35,fill:false},
-          {label:'Austin',      data:[480,465,560,665,712,730],borderColor:'#ffca28',pointRadius:4,tension:0.35,fill:false},
-          {label:'Nashville',   data:[430,422,498,572,605,618],borderColor:'#69f0ae',pointRadius:4,tension:0.35,fill:false},
-          {label:'Phoenix',     data:[395,385,452,532,568,580],borderColor:'#ef9a9a',pointRadius:4,tension:0.35,fill:false},
-          {label:'Charlotte',   data:[360,354,405,468,498,510],borderColor:'#ce93d8',pointRadius:4,tension:0.35,fill:false},
-          {label:'Indianapolis',data:[290,285,320,365,385,396],borderColor:'#ffb74d',pointRadius:4,tension:0.35,fill:false}
+      type: 'line',
+      data: {
+        labels: ['2020','2021','2022','2023','2024'],
+        datasets: [
+          {label:'Dallas',     data:[445,498,545,522,532], borderColor:'#4fc3f7', pointRadius:4, tension:0.35, fill:false},
+          {label:'Fort Worth', data:[295,335,368,350,360], borderColor:'#ffca28', pointRadius:4, tension:0.35, fill:false},
+          {label:'Plano',      data:[525,585,632,610,620], borderColor:'#69f0ae', pointRadius:4, tension:0.35, fill:false},
+          {label:'McKinney',   data:[398,450,494,478,488], borderColor:'#ef9a9a', pointRadius:4, tension:0.35, fill:false},
+          {label:'Frisco',     data:[542,605,655,635,648], borderColor:'#ce93d8', pointRadius:4, tension:0.35, fill:false},
+          {label:'Arlington',  data:[312,355,388,372,380], borderColor:'#ffb74d', pointRadius:4, tension:0.35, fill:false}
         ]
       },
-      options:{responsive:true,maintainAspectRatio:false,
+      options: {
+        responsive:true, maintainAspectRatio:false,
         plugins:{legend:{labels:{color:'#ccc',font:F,boxWidth:12}}},
-        scales:{x:{grid:{color:G},ticks:{color:T,font:F}},y:{grid:{color:G},ticks:{color:T,font:F,callback:v=>'$'+v+'K'}}}}
+        scales:{
+          x:{grid:{color:G},ticks:{color:T,font:F}},
+          y:{grid:{color:G},ticks:{color:T,font:F,callback:v=>'$'+v+'K'}}
+        }
+      }
     });
 
-    // 2 — Price per sqft bar
+    // Chart 2 — Price per SqFt by Submarket (2024)
     new Chart(document.getElementById('c2').getContext('2d'), {
-      type:'bar',
-      data:{
-        labels:['Denver','Austin','Nashville','Phoenix','Charlotte','Indianapolis'],
-        datasets:[{label:'$/sqft',data:[390,348,325,284,276,226],
-          backgroundColor:['#4fc3f7','#ffca28','#69f0ae','#ef9a9a','#ce93d8','#ffb74d'],
-          borderRadius:6,borderSkipped:false}]
+      type: 'bar',
+      data: {
+        labels: ['Frisco','Plano','Dallas','McKinney','Arlington','Fort Worth'],
+        datasets: [{
+          label: '$/sqft',
+          data: [225,218,210,192,178,165],
+          backgroundColor: ['#ce93d8','#69f0ae','#4fc3f7','#ef9a9a','#ffb74d','#ffca28'],
+          borderRadius: 6, borderSkipped: false
+        }]
       },
-      options:{responsive:true,maintainAspectRatio:false,
+      options: {
+        responsive:true, maintainAspectRatio:false,
         plugins:{legend:{display:false}},
-        scales:{x:{grid:{color:G},ticks:{color:T,font:{family:'Inter',size:10}}},y:{grid:{color:G},ticks:{color:T,font:F,callback:v=>'$'+v}}}}
+        scales:{
+          x:{grid:{color:G},ticks:{color:T,font:{family:'Inter',size:10}}},
+          y:{grid:{color:G},ticks:{color:T,font:F,callback:v=>'$'+v}}
+        }
+      }
     });
 
-    // 3 — Actual vs Predicted (grouped bar, 8 sample properties)
-    const props = ['Prop A','Prop B','Prop C','Prop D','Prop E','Prop F','Prop G','Prop H'];
-    const actual    = [312,510,428,645,380,720,295,560];
-    const predicted = [328,492,441,631,395,708,312,548];
+    // Chart 3 — Monthly Cash Flow Projection (Years 1–5, 4% rent growth)
     new Chart(document.getElementById('c3').getContext('2d'), {
-      type:'bar',
-      data:{
-        labels:props,
-        datasets:[
-          {label:'Actual',   data:actual,    backgroundColor:'rgba(255,202,40,0.8)',  borderRadius:4,borderSkipped:false},
-          {label:'Predicted',data:predicted, backgroundColor:'rgba(79,195,247,0.6)',  borderRadius:4,borderSkipped:false}
+      type: 'bar',
+      data: {
+        labels: ['Year 1','Year 2','Year 3','Year 4','Year 5'],
+        datasets: [{
+          label: 'Monthly Cash Flow ($)',
+          data: [-333,-249,-163,-74,19],
+          backgroundColor: [
+            'rgba(239,154,154,0.80)',
+            'rgba(239,154,154,0.65)',
+            'rgba(239,154,154,0.50)',
+            'rgba(239,154,154,0.35)',
+            'rgba(105,240,174,0.70)'
+          ],
+          borderRadius: 6, borderSkipped: false
+        }]
+      },
+      options: {
+        responsive:true, maintainAspectRatio:false,
+        plugins:{
+          legend:{display:false},
+          tooltip:{callbacks:{label:ctx=>'$'+ctx.parsed.y+'/mo'}}
+        },
+        scales:{
+          x:{grid:{color:G},ticks:{color:T,font:F}},
+          y:{grid:{color:G},ticks:{color:T,font:F,callback:v=>'$'+v}, min:-400, max:100}
+        }
+      }
+    });
+
+    // Chart 4 — Cumulative 5-Year Return Components
+    new Chart(document.getElementById('c4').getContext('2d'), {
+      type: 'line',
+      data: {
+        labels: ['Year 1','Year 2','Year 3','Year 4','Year 5'],
+        datasets: [
+          {
+            label:'Appreciation',
+            data:[11800,24072,37195,50683,64511],
+            borderColor:'#ffca28', pointRadius:4, tension:0.3, fill:false
+          },
+          {
+            label:'Loan Paydown',
+            data:[1580,3268,5070,6994,9049],
+            borderColor:'#69f0ae', pointRadius:4, tension:0.3, fill:false
+          },
+          {
+            label:'Cash Flow (cumulative)',
+            data:[-3996,-6984,-8940,-9828,-9600],
+            borderColor:'#ef9a9a', pointRadius:4, tension:0.3, fill:false
+          },
+          {
+            label:'Net Return',
+            data:[9384,20356,33325,47849,63960],
+            borderColor:'#4fc3f7', pointRadius:4, tension:0.3, fill:false, borderWidth:2.5
+          }
         ]
       },
-      options:{responsive:true,maintainAspectRatio:false,
-        plugins:{legend:{labels:{color:'#ccc',font:F}}},
-        scales:{x:{grid:{color:G},ticks:{color:T,font:{family:'Inter',size:10}}},y:{grid:{color:G},ticks:{color:T,font:F,callback:v=>'$'+v+'K'}}}}
-    });
-
-    // 4 — Feature importance horizontal bar
-    new Chart(document.getElementById('c4').getContext('2d'), {
-      type:'bar',
-      data:{
-        labels:['Sqft','Metro: Denver','Metro: Austin','Garage','Lot SqFt','Bedrooms','Bathrooms','Age (neg)','Metro: Nashville','Prop. Type'],
-        datasets:[{label:'|Coefficient|',data:[148,122,108,95,82,68,54,47,41,36],
-          backgroundColor:'rgba(255,202,40,0.75)',borderRadius:4,borderSkipped:false}]
-      },
-      options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,
-        plugins:{legend:{display:false}},
-        scales:{x:{grid:{color:G},ticks:{color:T,font:F}},y:{grid:{color:'transparent'},ticks:{color:T,font:{family:'Inter',size:10}}}}}
+      options: {
+        responsive:true, maintainAspectRatio:false,
+        plugins:{legend:{labels:{color:'#ccc',font:F,boxWidth:12}}},
+        scales:{
+          x:{grid:{color:G},ticks:{color:T,font:F}},
+          y:{grid:{color:G},ticks:{color:T,font:F,callback:v=>'$'+v.toLocaleString()}}
+        }
+      }
     });
 
     function toggleCode(){
@@ -167,5 +275,6 @@
       hljs.highlightElement(el);
     }).catch(()=>{});
   </script>
+
 </body>
 </html>
